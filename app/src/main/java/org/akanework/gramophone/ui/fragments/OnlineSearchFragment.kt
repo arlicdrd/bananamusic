@@ -42,10 +42,9 @@ class OnlineSearchFragment : BaseFragment(null) {
             hint = "Search YouTube Music"
         }.also { root.addView(it) }
 
-        go = Button(context).apply { text = "Search" }.also {
-            root.addView(it)
-            setOnClickListener { runSearch(input.text.toString()) }
-        }
+        go = Button(context).apply { text = "Search" }
+        go.setOnClickListener { runSearch(input.text.toString()) }
+        root.addView(go)
 
         progress = ProgressBar(context).apply { visibility = View.GONE }.also { root.addView(it) }
 
