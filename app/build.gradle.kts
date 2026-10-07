@@ -193,6 +193,7 @@ dependencies {
     implementation("com.google.android.flexbox:flexbox:3.0.0")
     implementation("me.zhanghai.android.fastscroll:library:1.3.0")
     implementation("io.coil-kt.coil3:coil:3.1.0")
+    implementation("com.jakewharton.timber:timber:5.0.1")
     implementation(files("../libs/lib-decoder-ffmpeg-release.aar"))
     implementation(projects.recyclerview)
     implementation(project(":innertube"))
