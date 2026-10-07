@@ -21,7 +21,7 @@ plugins {
 
 android {
     namespace = "androidx.recyclerview"
-    compileSdk = 36
+    compileSdk = 37
 
     defaultConfig {
         minSdk = 19
@@ -48,12 +48,12 @@ android {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
 }
 
 dependencies {

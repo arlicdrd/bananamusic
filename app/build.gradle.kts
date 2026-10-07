@@ -18,8 +18,8 @@ android {
     }
 
     namespace = "org.akanework.gramophone"
-    compileSdk = 36
-    buildToolsVersion = "36.0.0"
+    compileSdk = 37
+    buildToolsVersion = "37.0.0"
     ndkVersion = "28.0.13004108"
 
     androidResources {
@@ -28,6 +28,10 @@ android {
 
     buildFeatures {
         buildConfig = true
+    }
+
+    compileOptions {
+        isCoreLibraryDesugaringEnabled = true
     }
 
     packaging {
@@ -144,12 +148,12 @@ tasks.withType<PackageAndroidArtifact> {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(21)
     compilerOptions {
         freeCompilerArgs = listOf(
             "-Xno-param-assertions",
@@ -194,6 +198,7 @@ dependencies {
     implementation("me.zhanghai.android.fastscroll:library:1.3.0")
     implementation("io.coil-kt.coil3:coil:3.1.0")
     implementation("com.jakewharton.timber:timber:5.0.1")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs_nio:2.1.5")
     implementation(files("../libs/lib-decoder-ffmpeg-release.aar"))
     implementation(projects.recyclerview)
     implementation(project(":innertube"))
