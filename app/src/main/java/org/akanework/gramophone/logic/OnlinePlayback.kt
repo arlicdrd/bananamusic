@@ -27,7 +27,7 @@ suspend fun playYouTubeStream(
     context: Context,
     controller: MediaController?,
     videoId: String,
-): Boolean = withContext(Dispatchers.IO) {
+): String? = withContext(Dispatchers.IO) {
     val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val result = InnerTubeXPlayer.playerResponseForPlayback(videoId, null, AudioQuality.AUTO, cm)
     result.getOrNull()?.let { data ->
@@ -56,6 +56,9 @@ suspend fun playYouTubeStream(
                 play()
             }
         }
-        true
-    } ?: false
+        null
+    } ?: (result.exceptionOrNull()?.let {
+        timber.log.Timber.e(it, "Stream failed")
+        it.message ?: it.javaClass.simpleName
+    } ?: "Unknown error")
 }

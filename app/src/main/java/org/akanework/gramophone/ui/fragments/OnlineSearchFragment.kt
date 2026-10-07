@@ -64,8 +64,8 @@ class OnlineSearchFragment : BaseFragment(null) {
             val activity = requireActivity() as MainActivity
             lifecycleScope.launch {
                 status.text = "Loading stream for ${item.title}..."
-                val ok = playYouTubeStream(requireContext(), activity.getPlayer(), item.id)
-                status.text = if (ok) "Now playing: ${item.title}" else "Could not stream that item."
+                val error = playYouTubeStream(requireContext(), activity.getPlayer(), item.id)
+                status.text = if (error == null) "Now playing: ${item.title}" else "Could not stream: $error"
             }
         }
 
@@ -95,6 +95,10 @@ class OnlineSearchFragment : BaseFragment(null) {
                 progress.visibility = View.GONE
             }
         }
+    }
+
+    companion object {
+        var lastStreamError: String? = null
     }
 }
 

@@ -69,6 +69,7 @@ class GramophoneApplication : Application(), SingletonImageLoader.Factory, Threa
         org.akanework.gramophone.utils.InnerTubeXPlayer.initialize(this)
 
         if (BuildConfig.DEBUG) {
+            timber.log.Timber.plant(timber.log.Timber.DebugTree())
             // Use StrictMode to find anti-pattern issues
             StrictMode.setThreadPolicy(
                 ThreadPolicy.Builder()
