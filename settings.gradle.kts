@@ -24,4 +24,4 @@ plugins {
 }
 
 rootProject.name = "Accord"
-include(":app", ":recyclerview")
+include(":app", ":recyclerview", ":innertube")

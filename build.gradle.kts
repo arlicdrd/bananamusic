@@ -6,6 +6,7 @@ plugins {
     val kotlinVersion = "2.1.20-RC3"
     kotlin("android") version kotlinVersion apply false
     kotlin("plugin.parcelize") version kotlinVersion apply false
+    kotlin("plugin.serialization") version kotlinVersion apply false
     id("com.google.devtools.ksp") version "$kotlinVersion-1.0.31" apply false
 }
 
