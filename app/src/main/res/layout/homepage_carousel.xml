@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/hint_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:text="@string/new_songs"
+        android:textColor="@color/contrast_colorOnSurfaceSecondary"
+        android:textFontWeight="400" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="284dp"
+        android:layout_height="378dp"
+        android:layout_marginTop="12dp"
+        app:strokeColor="@color/contrast_colorOutline"
+        app:strokeWidth="1dp">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="74dp"
+            android:importantForAccessibility="no"
+            android:scaleType="centerCrop"
+            android:src="@drawable/accord_mix_1" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:layout_gravity="bottom">
+
+            <ImageView
+                android:id="@+id/banner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:importantForAccessibility="no"
+                android:src="@drawable/accord_mix_1_banner" />
+
+            <TextView
+                android:id="@+id/hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="sans-serif"
+                android:text="@string/new_delivery"
+                android:textColor="#FFFFFF"
+                android:textFontWeight="500"
+                android:textSize="16sp" />
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
