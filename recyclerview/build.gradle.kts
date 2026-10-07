@@ -33,11 +33,6 @@ android {
         }
     }
 
-    sourceSets.getByName("main") {
-        res.srcDirs("res")
-        res.srcDirs("res-public")
-    }
-
     publishing {
         singleVariant("release") {
             withSourcesJar()
