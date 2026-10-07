@@ -73,7 +73,7 @@ android {
             "RELEASE_TYPE",
             "\"$releaseType\""
         )
-        setProperty("archivesBaseName", "Accord-$versionName")
+        
     }
 
     signingConfigs {
@@ -149,6 +149,10 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+}
+
+base {
+    archivesName.set("Accord-beta2")
 }
 
 kotlin {
