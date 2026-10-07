@@ -73,11 +73,11 @@ class GramophoneApplication : Application(), SingletonImageLoader.Factory, Threa
             StrictMode.setThreadPolicy(
                 ThreadPolicy.Builder()
                     .detectAll().permitDiskReads() // permit disk reads due to media3 setMetadata() TODO extra player thread
-                    .penaltyLog().penaltyDialog().build())
+                    .penaltyLog().build())
             StrictMode.setVmPolicy(
                 VmPolicy.Builder()
                     .detectAll()
-                    .penaltyLog().penaltyDeath().build())
+                    .penaltyLog().build())
         }
 
         // This is a separate thread to avoid disk read on main thread and improve startup time
