@@ -13,6 +13,10 @@
         android:icon="@drawable/tab_library"
         android:title="@string/library" />
     <item
+        android:id="@+id/online"
+        android:icon="@drawable/tab_search"
+        android:title="@string/online" />
+    <item
         android:id="@+id/search"
         android:icon="@drawable/tab_search"
         android:title="@string/search" />

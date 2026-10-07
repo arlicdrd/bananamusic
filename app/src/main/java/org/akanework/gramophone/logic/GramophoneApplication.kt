@@ -66,6 +66,7 @@ class GramophoneApplication : Application(), SingletonImageLoader.Factory, Threa
     @OptIn(UnstableApi::class)
     override fun onCreate() {
         super.onCreate()
+        org.akanework.gramophone.utils.InnerTubeXPlayer.initialize(this)
 
         if (BuildConfig.DEBUG) {
             // Use StrictMode to find anti-pattern issues

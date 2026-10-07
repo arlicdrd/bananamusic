@@ -32,6 +32,7 @@ class ViewPagerFragment : BaseFragment(true) {
                 R.id.browse -> mViewPager2.setCurrentItem(1, true)
                 R.id.library -> mViewPager2.setCurrentItem(2, true)
                 R.id.search -> mViewPager2.setCurrentItem(3, true)
+                R.id.online -> mViewPager2.setCurrentItem(4, true)
                 else -> throw IllegalArgumentException("Illegal itemId: ${it.itemId}")
             }
             true
@@ -46,6 +47,7 @@ class ViewPagerFragment : BaseFragment(true) {
                     1 -> bottomNavigationView.selectedItemId = R.id.browse
                     2 -> bottomNavigationView.selectedItemId = R.id.library
                     3 -> bottomNavigationView.selectedItemId = R.id.search
+                    4 -> bottomNavigationView.selectedItemId = R.id.online
                 }
             }
         })

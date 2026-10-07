@@ -50,6 +50,9 @@ import androidx.media3.common.util.BitmapLoader
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
 import androidx.media3.common.util.Util.isBitmapFactorySupportedMimeType
+import androidx.media3.datasource.DataSource
+import androidx.media3.datasource.DataSpec
+import androidx.media3.datasource.DefaultDataSource
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.util.EventLogger
@@ -83,6 +86,7 @@ import org.akanework.gramophone.logic.utils.LastPlayedManager
 import org.akanework.gramophone.logic.utils.LrcUtils.extractAndParseLyrics
 import org.akanework.gramophone.logic.utils.LrcUtils.loadAndParseLyricsFile
 import org.akanework.gramophone.logic.utils.MediaStoreUtils
+import org.akanework.gramophone.logic.OnlineStreamHeaders
 import org.akanework.gramophone.logic.utils.exoplayer.EndedWorkaroundPlayer
 import org.akanework.gramophone.logic.utils.exoplayer.GramophoneMediaSourceFactory
 import org.akanework.gramophone.logic.utils.exoplayer.GramophoneRenderFactory
@@ -255,7 +259,27 @@ class GramophonePlaybackService : MediaLibraryService(), MediaSessionService.Lis
                         prefs.getBooleanStrict("ps_hardware_acc", true)
                     )
                     .setExtensionRendererMode(DefaultRenderersFactory.EXTENSION_RENDERER_MODE_PREFER),
-                GramophoneMediaSourceFactory(this)
+                GramophoneMediaSourceFactory(
+                    object : DataSource.Factory {
+                        private val delegate = DefaultDataSource.Factory(this@GramophonePlaybackService)
+                        override fun createDataSource(): DataSource {
+                            val inner = delegate.createDataSource()
+                            return object : DataSource by inner {
+                                override fun open(dataSpec: DataSpec): Long {
+                                    val headers = OnlineStreamHeaders.current
+                                    if (headers != null &&
+                                        (dataSpec.uri.scheme == "http" || dataSpec.uri.scheme == "https")
+                                    ) {
+                                        return inner.open(
+                                            dataSpec.buildUpon().setHeaders(headers).build()
+                                        )
+                                    }
+                                    return inner.open(dataSpec)
+                                }
+                            }
+                        }
+                    },
+                )
                 /* .setMp3ExtractorFlags(Mp3Extractor.FLAG_ENABLE_INDEX_SEEKING))
             TODO flag breaks playback of AcousticGuitar.mp3, report exo bug + add UI toggle*/
             )

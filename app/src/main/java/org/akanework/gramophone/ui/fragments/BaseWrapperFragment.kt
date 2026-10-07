@@ -37,6 +37,7 @@ class BaseWrapperFragment : BaseFragment {
                         1 -> BrowseFragment()
                         2 -> LibraryFragment()
                         3 -> SearchFragment()
+                        4 -> OnlineSearchFragment()
                         else -> throw IllegalArgumentException()
                     }
                 )
